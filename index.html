@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimiseur de Flux de Travail de Conception | Analyse de Votre Processus</title>
+    <meta name="description" content="Améliorez l">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.2);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --text-color: #2c3e50;
+            --accent-color: #3498db;
+            --accent-hover: #2980b9;
+            --light-grey: #ecf0f1;
+            --dark-grey: #bdc3c7;
+            --font-serif: "Georgia", serif;
+            --font-sans: "Helvetica Neue", sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #e0f2f7, #f7fcfc);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            width: 100%;
+            padding: 2rem 0;
+            text-align: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--text-color);
+            margin: 0;
+            letter-spacing: -0.05em;
+        }
+
+        p.tagline {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            width: 90%;
+            max-width: 1200px;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 800px) {
+            .container {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        .tool-panel, .result-panel, .section-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-panel::before, .result-panel::before, .section-panel::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: moveGradient 15s infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes moveGradient {
+            0% { transform: translate(0%, 0%); }
+            100% { transform: translate(50%, 50%); }
+        }
+
+        .tool-panel > *, .result-panel > *, .section-panel > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            margin-top: 0;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+            color: #444;
+            font-size: 1.1rem;
+        }
+
+        textarea, select, input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--dark-grey);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: var(--light-grey);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        textarea:focus, select:focus, input[type="text"]:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        #tool-result {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--dark-grey);
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .metric-card {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+        }
+
+        .metric-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .metric-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .metric-card li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        footer {
+            width: 100%;
+            padding: 3rem 0;
+            text-align: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.05);
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .seo-section {
+            width: 90%;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+
+        .seo-section h2 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .seo-section p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .seo-section ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .seo-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+    </style>
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://optimiseur-de-flux-de-travail-de-conception-1.onrender.com">
+    <meta property="og:title" content="Optimiseur de Flux de Travail de Conception">
+    <meta property="og:description" content="Améliorez l">
+    <meta property="og:url" content="https://optimiseur-de-flux-de-travail-de-conception-1.onrender.com">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Optimiseur de Flux de Travail de Conception", "description": "Améliorez l", "url": "https://optimiseur-de-flux-de-travail-de-conception-1.onrender.com", "applicationCategory": "UtilityApplication", "operatingSystem": "Web Browser"}</script>
+</head>
+<body data-site-slug="optimiseur-de-flux-de-travail-de-conception-1" data-runtime-mode="analysis_tool">
+    <header>
+        <h1>Optimiseur de Flux de Travail de Conception</h1>
+        <p class="tagline">Débloquez l'efficacité, fluidifiez votre processus créatif.</p>
+    </header>
+
+    <div class="container">
+        <div class="tool-panel">
+            <h2>Analyse de Votre Processus</h2>
+            <p>Décrivez les étapes clés de votre processus de conception actuel. Soyez aussi détaillé que possible. Identifions ensemble les points faibles.</p>
+            <form id="tool-form">
+                <label for="process-description">Décrivez votre processus (ex: Brief client > Recherche > Esquisses > Maquettes > Feedback > Itération > Livraison) :</label>
+                <textarea id="process-description" rows="8" placeholder="Décrivez les étapes de votre flux de travail..." required>Brief client, Recherche, Esquisses, Maquettes, Révision interne, Feedback client, Itération, Polissage, Préparation à la livraison, Livraison finale</textarea>
+
+                <label for="design-discipline">Votre discipline de conception :</label>
+                <select id="design-discipline" required>
+                    <option value="ux-ui">UX/UI Design</option>
+                    <option value="graphisme">Design Graphique</option>
+                    <option value="architecture">Architecture</option>
+                    <option value="produit">Design Produit</option>
+                    <option value="web">Développement Web (Front-end)</option>
+                    <option value="autre">Autre</option>
+                </select>
+
+                <label for="current-challenges">Quels sont vos principaux défis actuels ? (Optionnel)</label>
+                <input type="text" id="current-challenges" placeholder="Ex: Révisions interminables, délais serrés, manque de clarté...">
+
+                <button type="submit" id="tool-submit" data-affiliate-slot="analyze_design_flow">Analyser le Flux de Travail</button>
+            </form>
+        </div>
+
+        <div class="result-panel">
+            <h2>Vos Résultats d'Optimisation</h2>
+            <p>Une fois l'analyse effectuée, vous trouverez ici les goulets d'étranglement identifiés et les suggestions de flux optimisés.</p>
+            <div id="tool-result">
+                <p id="result-detail">Vos résultats apparaîtront ici après l'analyse de votre processus. Préparez-vous à découvrir des pistes d'amélioration significatives !</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="section-panel" style="width: 90%; max-width: 1200px; margin-bottom: 3rem;">
+        <h2>Pourquoi Optimiser Votre Flux ?</h2>
+        <p>Dans le monde exigeant de la création, chaque minute compte. Un flux de travail bien huilé n'est pas seulement une question d'efficacité, c'est aussi un vecteur de sérénité et d'innovation.</p>
+        <div class="metric-grid">
+            <div class="metric-card">
+                <h3>Gain de Temps et Coûts</h3>
+                <ul>
+                    <li>Réduction des itérations inutiles</li>
+                    <li>Accélération des livrables</li>
+                    <li>Minimisation des erreurs coûteuses</li>
+                </ul>
+            </div>
+            <div class="metric-card">
+                <h3>Qualité et Cohérence</h3>
+                <ul>
+                    <li>Processus standardisé et fiable</li>
+                    <li>Amélioration de la qualité des rendus</li>
+                    <li>Meilleure harmonie d'équipe</li>
+                </ul>
+            </div>
+            <div class="metric-card">
+                <h3>Bien-être et Créativité</h3>
+                <ul>
+                    <li>Moins de stress, plus de concentration</li>
+                    <li>Libération pour l'innovation</li>
+                    <li>Meilleure satisfaction client</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="seo-section">
+        <h2>Optimisation de Processus de Conception : Votre Guide Complet en France</h2>
+        <p>En tant que designer UX/UI, graphiste ou architecte, l'efficacité de votre flux de travail est primordiale. Notre outil d'analyse est conçu spécifiquement pour les professionnels en France qui cherchent à identifier les goulets d'étranglement et à optimiser leurs méthodologies de travail. Que vous soyez un freelance, une agence de design ou un studio d'architecture, fluidifier vos étapes de création peut transformer votre quotidien et la qualité de vos projets.</p>
+        <h3>Comment améliorer votre flux de travail de designer ?</h3>
+        <p>L'optimisation d'un processus de conception passe par une compréhension fine de chaque étape, de la prise de brief à la livraison finale. Notre outil vous aide à visualiser votre parcours actuel pour mieux cibler les aires d'amélioration. Fini les retours interminables et les délais non respectés !</p>
+        <ul>
+            <li><strong>Analyse de goulets d'étranglement :</strong> Découvrez où votre processus ralentit.</li>
+            <li><strong>Suggestions de flux optimisés :</strong> Accédez à des bibliothèques de processus éprouvés.</li>
+            <li><strong>Gestion de projet design :</strong> Améliorez la coordination et la communication.</li>
+            <li><strong>Efficacité créative :</strong> Concentrez-vous sur l'innovation, pas sur les contraintes.</li>
+            <li><strong>Outil pour designers français :</strong> Adapté aux spécificités du marché et des pratiques locales.</li>
+        </ul>
+        <p>Que vous recherchiez des solutions pour le design d'interface, la création graphique ou la conception architecturale, notre plateforme est votre partenaire pour une production plus fluide et des résultats de meilleure qualité. Essayez dès maintenant notre analyseur de processus pour une gestion de projet design sans égale.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Optimiseur de Flux. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        document.getElementById('tool-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const description = document.getElementById('process-description').value;
+            const discipline = document.getElementById('design-discipline').value;
+            const challenges = document.getElementById('current-challenges').value;
+            const resultDiv = document.getElementById('tool-result');
+
+            let analysis = `<h3>Rapport d'Analyse pour ${discipline === 'autre' ? 'votre discipline' : discipline}</h3>`;
+            analysis += `<p><strong>Votre processus décrit :</strong> ${description}</p>`;
+            if (challenges) {
+                analysis += `<p><strong>Vos défis identifiés :</strong> ${challenges}</p>`;
+            }
+
+            const steps = description.split(/[,\s*>\-é]+/).map(s => s.trim()).filter(s => s.length > 0);
+            let bottlenecks = [];
+            let optimizedSuggestions = [];
+
+            // Simple heuristic for bottleneck detection and suggestions
+            const commonBottlenecks = {
+                'Brief client': "Manque de clarté initiale ? Pensez à un template de brief détaillé et une réunion de cadrage systématique.",
+                'Recherche': "Peut-être la recherche est trop longue ? Définissez des limites de temps ou des livrables de recherche précis.",
+                'Esquisses': "Difficulté à passer des idées au papier ? Explorez le 'Crazy 8s' ou le 'Design Sprint' pour des esquisses rapides.",
+                'Maquettes': "Beaucoup de temps sur les détails trop tôt ? Priorisez les wireframes low-fi avant les maquettes haute fidélité.",
+                'Révision interne': "Peu de retours constructifs ? Mettez en place des grilles de feedback et des sessions de critique structurées.",
+                'Feedback client': "Retours flous ou contradictoires ? Guidez le client avec des questions spécifiques et limitez le nombre de réviseurs.",
+                'Itération': "Cycle d'itération sans fin ? Définissez un nombre maximum d'itérations ou des 'gates' de validation.",
+                'Polissage': "Perfectionnisme excessif ? Établissez des critères de 'prêt à livrer' clairs.",
+                'Préparation à la livraison': "Problèmes de format ou de spécifications ? Créez des checklists de livraison et des templates.",
+                'Livraison finale': "Post-mortem oubliés ? Intégrez une réunion de clôture pour apprendre de chaque projet."
+            };
+
+            const commonOptimizedFlows = {
+                'ux-ui': [
+                    "Brief & Cadrage > Recherche UX & Analyse Utilisateur > Wireframes & Tests Utilisateurs Basse Fidélité > Maquettes UI & Prototypage > Tests Utilisateurs Haute Fidélité > Itération & Polissage > Spécifications Techniques > Handoff aux Développeurs > Suivi Post-Lancement",
+                    "Design Sprint (5 jours) : Comprendre > Esquisser > Décider > Prototyper > Tester"
+                ],
+                'graphisme': [
+                    "Brief Créatif > Veille & Moodboard > Concepts Graphiques > Présentation & Feedback Client (V1) > Itérations & Affinements > Validation Finale > Déclinaisons & Adaptation > Préparation Fichiers PAO/Web > Livraison",
+                    "Méthode des 3 propositions : Présenter 3 pistes distinctes pour orienter les choix."
+                ],
+                'architecture': [
+                    "Programme & Faisabilité > Esquisse & Étude Préliminaire (APS) > Avant-Projet (APD) > Permis de Construire (PC) > Projet (PRO) & Dossier de Consultation des Entreprises (DCE) > Exécution (EXE) & Suivi de Chantier > Réception",
+                    "Intégrer des revues BIM (Building Information Modeling) régulières pour la coordination."
+                ],
+                'produit': [
+                    "Découverte (Problème, Besoins) > Idéation & Spécification > Conception (UX/UI, Ingénierie) > Prototypage & Tests > Fabrication / Développement > Lancement > Mesure & Itération",
+                    "Adopter un cycle PDCA (Plan-Do-Check-Act) pour l'amélioration continue."
+                ],
+                'web': [
+                    "Brief & Spécifications Fonctionnelles > Design UX/UI > Maquettage HTML/CSS > Développement Front-end > Intégration Back-end > Tests & Recette > Déploiement > Maintenance & Optimisation",
+                    "Mettre en place un système de design (Design System) pour la cohérence et la rapidité."
+                ],
+                'autre': [
+                    "Étape 1 : Clarification des objectifs > Étape 2 : Exploration des solutions > Étape 3 : Création d'une première version > Étape 4 : Collecte de retours > Étape 5 : Amélioration et finalisation."
+                ]
+            };
+
+            steps.forEach(step => {
+                if (commonBottlenecks[step]) {
+                    bottlenecks.push(`<li><strong>${step} :</strong> ${commonBottlenecks[step]}</li>`);
+                }
+            });
+
+            if (bottlenecks.length > 0) {
+                analysis += `<h3>Goulets d'étranglement potentiels et pistes d'amélioration :</h3><ul>${bottlenecks.join('')}</ul>`;
+            } else {
+                analysis += `<p>Aucun goulet d'étranglement évident détecté dans les étapes classiques. Votre processus semble déjà bien structuré !</p>`;
+            }
+
+            analysis += `<h3>Suggestions de flux optimisés pour votre discipline :</h3>`;
+            const disciplineSuggestions = commonOptimizedFlows[discipline] || commonOptimizedFlows['autre'];
+            analysis += `<div class="metric-grid">`;
+            disciplineSuggestions.forEach((flow, index) => {
+                analysis += `<div class="metric-card">
+                                <h3>Option de Flux Optimisé #${index + 1}</h3>
+                                <p>${flow}</p>
+                            </div>`;
+            });
+            analysis += `</div>`;
+
+            if (!bottlenecks.length && !disciplineSuggestions.length) {
+                 analysis += `<p>Nous n'avons pas de suggestions spécifiques pour ces étapes ou cette discipline. Essayez de détailler davantage votre processus !</p>`;
+            }
+
+
+            resultDiv.innerHTML = analysis;
+        });
+    </script>
+<div id="qa-smoke-result" hidden></div>
+<script id="farmbuilder-affiliate-helper">
+(function () {
+  window.__UTILITY_AFFILIATE_MAP = window.__UTILITY_AFFILIATE_MAP || {};
+  document.addEventListener("click", function (event) {
+    const target = event.target.closest("[data-affiliate-slot]");
+    if (!target) return;
+    const slot = target.getAttribute("data-affiliate-slot");
+    const href = window.__UTILITY_AFFILIATE_MAP[slot];
+    if (!href) return;
+    if (target.tagName && target.tagName.toLowerCase() === "a") {
+      target.setAttribute("href", href);
+      target.setAttribute("rel", "nofollow sponsored noopener noreferrer");
+      return;
+    }
+    event.preventDefault();
+    window.open(href, "_blank", "noopener");
+  }, true);
+})();
+</script>
+<script id="farmbuilder-functional-qa">
+(function () {
+  function marker() {
+    let node = document.getElementById("qa-smoke-result");
+    if (node) return node;
+    node = document.createElement("div");
+    node.id = "qa-smoke-result";
+    node.hidden = true;
+    document.body.appendChild(node);
+    return node;
+  }
+
+  function normalize(text) {
+    return String(text || "").replace(/\s+/g, " ").trim();
+  }
+
+  function findForm() {
+    return document.getElementById("tool-form") || document.querySelector("form");
+  }
+
+  function findResult() {
+    return (
+      document.getElementById("tool-result") ||
+      document.querySelector("[data-result]") ||
+      document.querySelector(".tool-result, .result-card, .result, .results, .output, .preview, .diagnostic, .analysis")
+    );
+  }
+
+  function resultSignature(node) {
+    if (!node) return "";
+    const text = normalize(node.textContent);
+    const html = normalize(node.innerHTML).slice(0, 600);
+    return `${text}||${html}`;
+  }
+
+  function resultHeadline(node) {
+    if (!node) return "";
+    const heading = node.querySelector("h1, h2, h3, strong, b");
+    return normalize(heading ? heading.textContent : "");
+  }
+
+  function sampleText(field) {
+    const key = `${field.id || ""} ${field.name || ""} ${field.placeholder || ""}`.toLowerCase();
+    if (/email/.test(key)) return "bonjour@example.com";
+    if (/url|site|website|lien/.test(key)) return "https://example.com/offre-solaire";
+    if (/phone|tel|mobile/.test(key)) return "0612345678";
+    if (/ville|city|localisation|location|region|departement|postal/.test(key)) return "Paris";
+    if (/orientation/.test(key)) return "sud";
+    if (/keyword|theme|topic|sujet|subject/.test(key)) return "energie solaire domestique";
+    if (/titre|title/.test(key)) return "Simulateur solaire maison";
+    if (/nom|name|project/.test(key)) return "Projet Horizon";
+    if (/description|notes|content|message/.test(key)) return "Maison individuelle exposee sud avec toiture exploitable.";
+    return field.placeholder || "France";
+  }
+
+  function sampleNumber(field) {
+    const key = `${field.id || ""} ${field.name || ""}`.toLowerCase();
+    if (/inclinaison|angle|slope/.test(key)) return "30";
+    if (/surface|size|m2|sqm/.test(key)) return "28";
+    if (/annee|year/.test(key)) return "2024";
+    if (/prix|price|budget|cost|amount|montant/.test(key)) return "12000";
+    const min = Number(field.min || "");
+    const max = Number(field.max || "");
+    if (Number.isFinite(min) && Number.isFinite(max) && max >= min) {
+      return String(Math.min(max, Math.max(min, min + Math.round((max - min) * 0.35))));
+    }
+    if (Number.isFinite(min)) return String(Math.max(min, 12));
+    if (Number.isFinite(max)) return String(Math.min(max, 12));
+    return field.value || "12";
+  }
+
+  function applySample(field) {
+    const tag = (field.tagName || "").toLowerCase();
+    const type = (field.type || "").toLowerCase();
+    if (field.disabled) return;
+    if (tag === "select") {
+      const option = Array.from(field.options || []).find((item) => item.value && !item.disabled) || field.options[0];
+      if (option) field.value = option.value;
+      return;
+    }
+    if (type === "checkbox") {
+      field.checked = true;
+      return;
+    }
+    if (type === "radio") {
+      field.checked = true;
+      return;
+    }
+    if (type === "date") {
+      field.value = "2026-03-01";
+      return;
+    }
+    if (type === "email") {
+      field.value = "bonjour@example.com";
+      return;
+    }
+    if (type === "url") {
+      field.value = "https://example.com/offre-solaire";
+      return;
+    }
+    if (type === "tel") {
+      field.value = "0612345678";
+      return;
+    }
+    if (type === "color") {
+      field.value = "#2f855a";
+      return;
+    }
+    if (type === "number" || type === "range") {
+      field.value = sampleNumber(field);
+      return;
+    }
+    field.value = sampleText(field);
+  }
+
+  function stamp(status, detail, headline, primary) {
+    const node = marker();
+    node.dataset.status = status;
+    node.dataset.mode = "native-form";
+    node.dataset.detail = detail || "";
+    node.dataset.headline = headline || "";
+    node.dataset.primary = primary || "";
+    node.dataset.viewport = window.innerWidth <= 640 ? "mobile" : "desktop";
+  }
+
+  function inspectResult(before, attemptsLeft) {
+    const result = findResult();
+    if (!result) {
+      stamp("fail", "La zone de resultat est introuvable.", "");
+      return;
+    }
+    const after = resultSignature(result);
+    const text = normalize(result.textContent);
+    if (after && after !== before && text.length >= 24) {
+      const primary = result.querySelector("a[href], button[data-href], [data-primary-url]") || document.querySelector("#tool-result a[href]");
+      stamp("pass", "Le formulaire natif a mis a jour la zone de resultat.", resultHeadline(result), primary ? (primary.getAttribute("href") || primary.getAttribute("data-primary-url") || "") : "");
+      return;
+    }
+    if (attemptsLeft > 0) {
+      window.setTimeout(function () {
+        inspectResult(before, attemptsLeft - 1);
+      }, 250);
+      return;
+    }
+    stamp("fail", "La zone de resultat n'a pas renvoye de contenu exploitable.", resultHeadline(result));
+  }
+
+  function runSmoke() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("__qa") !== "functional") return;
+    const form = findForm();
+    if (!form) {
+      stamp("fail", "Le formulaire principal est introuvable.", "");
+      return;
+    }
+    const result = findResult();
+    const before = resultSignature(result);
+    form.querySelectorAll("input, select, textarea").forEach(applySample);
+    const blocker = function (event) {
+      event.preventDefault();
+    };
+    form.addEventListener("submit", blocker, { capture: true, once: true });
+    form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+    inspectResult(before, 6);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      window.setTimeout(runSmoke, 60);
+    }, { once: true });
+  } else {
+    window.setTimeout(runSmoke, 60);
+  }
+})();
+</script>
+</body>
+</html>
