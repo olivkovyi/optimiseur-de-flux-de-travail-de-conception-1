@@ -1,23 +1,38 @@
 {
+  "slug": "optimiseur-de-flux-de-travail-de-conception-1",
   "name": "Optimiseur de Flux de Travail de Conception",
   "description": "Améliorez l",
   "theme": "tool",
-  "design_theme": "liquid-glass",
-  "structure_preset": "metric-grid",
-  "render_direction": "signal-bento",
-  "page_blueprint": "briefing-board",
+  "design_theme": "imported-source",
+  "structure_preset": "external-source",
+  "render_direction": "imported-source",
+  "page_blueprint": "imported-source",
   "language": "fr",
   "country": "FR",
   "url": null,
   "expected_url": "https://optimiseur-de-flux-de-travail-de-conception-1.onrender.com",
-  "created": "2026-04-01T21:54:57.165314+00:00",
+  "created": "2026-05-13T01:38:51.211558+00:00",
   "owner_user_id": "user-1774822953462",
   "owner_username": "admin",
   "owner_display_name": "Administrator",
   "status": "generated",
-  "run_id": "run-1775080471956",
+  "run_id": "run-1778636330483",
   "publish_target": "render",
   "mode": "production",
+  "source_type": "imported",
+  "import_source_path": "/var/lib/utility-site-studio/data/growth-republish/growth-1778636287649/optimiseur-de-flux-de-travail-de-conception-1",
+  "import_root_path": "/var/lib/utility-site-studio/data/growth-republish/growth-1778636287649/optimiseur-de-flux-de-travail-de-conception-1",
+  "import_resolution_note": null,
+  "analysis": {
+    "model": "preserved-analysis",
+    "summary": "Améliorez l",
+    "notes": "Growth module republish of an updated local artifact.",
+    "characteristics": [
+      "imported static site",
+      "ready file deploy",
+      "calculator"
+    ]
+  },
   "github": {
     "status": "pending"
   },
@@ -28,13 +43,254 @@
     "status": "pending"
   },
   "features": [
-    "Hero pattern: command",
-    "Proof module: metrics",
-    "Design theme: Liquid Glass",
-    "Render direction: Signal Bento",
-    "Page blueprint: Briefing Board",
-    "Runtime mode: analysis_tool",
-    "Generation mode: direct_html",
-    "Artifact rendered, awaiting QA and deployment"
-  ]
+    "Imported from ready static files",
+    "AI analysis model: preserved-analysis",
+    "imported static site",
+    "ready file deploy",
+    "calculator"
+  ],
+  "growth": {
+    "content": {
+      "status": "ready",
+      "updated_at": "2026-05-13T01:38:31.006395+00:00",
+      "article_count": 1,
+      "anchor_article_count": 1,
+      "plain_url_article_count": 0,
+      "batch_anchor_article_count": 1,
+      "batch_plain_url_article_count": 4,
+      "total_batch_articles": 5,
+      "links": 1,
+      "anchor_keywords": [
+        "julius casino fr"
+      ],
+      "section_title": "Ressources complémentaires",
+      "pages": [
+        {
+          "slug": "optimiseur-de-flux-de-travail-de-conception-guide-1",
+          "path": "/var/lib/utility-site-studio/sites/optimiseur-de-flux-de-travail-de-conception-1/insights/optimiseur-de-flux-de-travail-de-conception-guide-1.html",
+          "title": "Optimiseur de Flux de Travail de Conception — Guide 1",
+          "link_mode": "anchor_text"
+        }
+      ],
+      "review": {
+        "status": "pass",
+        "score": 82,
+        "summary": "A safer fallback content bundle was applied with clean supporting pages and a restrained homepage knowledge section.",
+        "issues": []
+      }
+    }
+  },
+  "ahrefs": {
+    "status": "ready",
+    "synced_at": "2026-05-13T01:21:48.560430+00:00",
+    "country": "FR",
+    "target_url": "https://optimiseur-de-flux-de-travail-de.onrender.com/",
+    "target_host": "optimiseur-de-flux-de-travail-de.onrender.com",
+    "current_live_url": "https://optimiseur-de-flux-de-travail-de.onrender.com",
+    "domain_rating": 89.0,
+    "ahrefs_rank": 1924,
+    "backlinks": 0,
+    "refdomains": 0,
+    "org_traffic": 0,
+    "org_keywords": 0,
+    "org_keywords_1_3": 0,
+    "org_keywords_4_10": 0,
+    "org_keywords_11_20": 0,
+    "org_keywords_21_50": 0,
+    "org_keywords_51_plus": 0,
+    "top_country": null,
+    "top_country_traffic": null,
+    "detail": "Ahrefs metrics synced via Batch Analysis.",
+    "shared_host": true,
+    "metrics_scope": "shared-host",
+    "shared_host_provider": "Render",
+    "shared_host_note": "Сайт живёт на Render shared host (optimiseur-de-flux-de-travail-de.onrender.com). DR и Ahrefs Rank в таком режиме частично отражают силу хост-домена, поэтому смотри в первую очередь на keywords, ref domains, traffic и top pages.",
+    "opportunity_score": 0,
+    "opportunity_band": "dormant",
+    "opportunity_label": "Dormant",
+    "opportunity_detail": "Ahrefs пока почти не видит самостоятельных SEO-сигналов у этого проекта. · shared-host: DR/AR смотри осторожно."
+  },
+  "previous_live_state": {
+    "url": "https://optimiseur-de-flux-de-travail-de.onrender.com",
+    "expected_url": "https://optimiseur-de-flux-de-travail-de.onrender.com",
+    "requested_url": "https://optimiseur-de-flux-de-travail-de.onrender.com",
+    "github": {
+      "status": "published",
+      "repo_name": "optimiseur-de-flux-de-travail-de-conception-1",
+      "repo_url": "https://github.com/olivkovyi/optimiseur-de-flux-de-travail-de-conception-1",
+      "updated_at": 1775080517
+    },
+    "deployment": {
+      "status": "ready",
+      "provider": "render",
+      "service_id": "srv-d76p95vkijhs73blb2n0",
+      "project_name": "optimiseur-de-flux-de-travail-de-conception-1",
+      "requested_project_name": null,
+      "deployment_id": "dep-d76p96fkijhs73blb33g",
+      "deployment_url": "https://optimiseur-de-flux-de-travail-de.onrender.com",
+      "public_url": "https://optimiseur-de-flux-de-travail-de.onrender.com",
+      "expected_public_url": "https://optimiseur-de-flux-de-travail-de.onrender.com",
+      "dashboard_url": "https://dashboard.render.com/static/srv-d76p95vkijhs73blb2n0",
+      "ready_state": "live",
+      "target": "production",
+      "updated_at": 1775080538,
+      "url_source": "alias",
+      "requested_public_url": "https://optimiseur-de-flux-de-travail-de.onrender.com"
+    },
+    "qa": {
+      "status": "pass",
+      "local": {
+        "status": "pass",
+        "checks": [
+          {
+            "name": "index_exists",
+            "status": "pass",
+            "detail": "index.html exists"
+          },
+          {
+            "name": "meta_exists",
+            "status": "pass",
+            "detail": "meta.json exists"
+          },
+          {
+            "name": "robots_exists",
+            "status": "pass",
+            "detail": "robots.txt exists"
+          },
+          {
+            "name": "has_title",
+            "status": "pass",
+            "detail": "HTML contains a title tag"
+          },
+          {
+            "name": "has_viewport",
+            "status": "pass",
+            "detail": "HTML contains a mobile viewport meta tag"
+          },
+          {
+            "name": "has_canonical",
+            "status": "pass",
+            "detail": "HTML contains a canonical URL"
+          },
+          {
+            "name": "bundle_size",
+            "status": "pass",
+            "detail": "Generated HTML stays below 250KB"
+          },
+          {
+            "name": "functional_qa_hook",
+            "status": "pass",
+            "detail": "Generated HTML includes the browser QA hook used before deploy."
+          },
+          {
+            "name": "inline_script_syntax",
+            "status": "pass",
+            "detail": "Inline JavaScript syntax check passed."
+          },
+          {
+            "name": "robots_google_only",
+            "status": "pass",
+            "detail": "robots.txt allows only Google crawlers and blocks all other bots."
+          },
+          {
+            "name": "no_meta_noindex",
+            "status": "pass",
+            "detail": "Generated HTML does not inject a noindex robots meta tag."
+          },
+          {
+            "name": "no_internal_branding",
+            "status": "pass",
+            "detail": "Generated site does not leak internal platform branding or internal product naming."
+          },
+          {
+            "name": "desktop_layout_overlap",
+            "status": "pass",
+            "detail": "Editorial desktop layout avoids negative overlap offsets on the tool panel"
+          }
+        ],
+        "checked_at": 1778636311
+      },
+      "functional": {
+        "status": "pass",
+        "detail": "desktop: Le formulaire natif a mis a jour la zone de resultat. | mobile: Le formulaire natif a mis a jour la zone de resultat.",
+        "target_url": "http://127.0.0.1:41461/index.html?__qa=functional",
+        "mode": "native-form",
+        "headline": "Rapport d'Analyse pour ux-ui",
+        "primary_url": "",
+        "desktop": {
+          "status": "pass",
+          "detail": "Le formulaire natif a mis a jour la zone de resultat.",
+          "target_url": "http://127.0.0.1:41461/index.html?__qa=functional",
+          "viewport": "desktop",
+          "mode": "native-form",
+          "headline": "Rapport d'Analyse pour ux-ui",
+          "primary_url": "",
+          "reported_viewport": "desktop",
+          "updated_at": 1778636311
+        },
+        "mobile": {
+          "status": "pass",
+          "detail": "Le formulaire natif a mis a jour la zone de resultat.",
+          "target_url": "http://127.0.0.1:41461/index.html?__qa=functional",
+          "viewport": "mobile",
+          "mode": "native-form",
+          "headline": "Rapport d'Analyse pour ux-ui",
+          "primary_url": "",
+          "reported_viewport": "mobile",
+          "updated_at": 1778636312
+        },
+        "updated_at": 1778636312
+      },
+      "remote": {
+        "status": "pass",
+        "checks": [
+          {
+            "name": "remote_200",
+            "status": "pass",
+            "detail": "Remote deployment returned HTTP 200"
+          },
+          {
+            "name": "remote_title",
+            "status": "pass",
+            "detail": "Remote HTML contains a title tag"
+          },
+          {
+            "name": "remote_body",
+            "status": "pass",
+            "detail": "Remote HTML contains a body tag"
+          }
+        ],
+        "checked_at": 1778636312
+      },
+      "visual": {
+        "status": "pass",
+        "desktop": {
+          "status": "pass",
+          "path": "/var/lib/utility-site-studio/static/generated-qa/optimiseur-de-flux-de-travail-de-conception-1/optimiseur-de-flux-de-travail-de-conception-1-desktop.png",
+          "detail": "1440x960 screenshot captured.",
+          "relative_url": "/static/generated-qa/optimiseur-de-flux-de-travail-de-conception-1/optimiseur-de-flux-de-travail-de-conception-1-desktop.png"
+        },
+        "mobile": {
+          "status": "pass",
+          "path": "/var/lib/utility-site-studio/static/generated-qa/optimiseur-de-flux-de-travail-de-conception-1/optimiseur-de-flux-de-travail-de-conception-1-mobile.png",
+          "detail": "430x932 screenshot captured.",
+          "relative_url": "/static/generated-qa/optimiseur-de-flux-de-travail-de-conception-1/optimiseur-de-flux-de-travail-de-conception-1-mobile.png"
+        },
+        "updated_at": 1778636316
+      },
+      "lighthouse": {
+        "status": "pass",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 96,
+          "seo": 100
+        },
+        "report_path": "/var/lib/utility-site-studio/data/qa/lighthouse/optimiseur-de-flux-de-travail-de-conception-1-lighthouse.json",
+        "updated_at": 1778636330
+      },
+      "qa_live_url": "https://optimiseur-de-flux-de-travail-de.onrender.com",
+      "updated_at": "2026-05-13T01:38:50.038361+00:00"
+    }
+  }
 }
